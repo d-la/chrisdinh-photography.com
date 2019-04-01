@@ -4,6 +4,8 @@ let express = require('express'),
     localStrategy = require('passport-local'),
     cors = require('cors');
 
+const errorHandler = require('./handlers/error');
+
 const app = express();
 const port = process.env.port || 3000;
 
@@ -19,6 +21,8 @@ app.use( (req, res, next) => {
     error.status = 404;
     next(error);
 });
+
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
