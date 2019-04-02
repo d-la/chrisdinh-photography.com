@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrupt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -40,6 +40,11 @@ userSchema.pre('save', async function(next){
     }
 });
 
+/**
+ * comparePassword will compare the users entered password to their password hash
+ * 
+ * 
+ */
 userSchema.method.comparePassword = async function(userPassword, next){
     try {
         let isMatch = await bcrypt.compare(userPassword, this.password);
