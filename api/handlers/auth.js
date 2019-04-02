@@ -20,10 +20,10 @@ exports.signIn = async function(req, res, next){
                 email,
                 profileImageUrl
             }, process.env.SECRET_KEY);
-    
+
             return res.status(200).json({
                 id,
-                username,
+                email,
                 profileImageUrl,
                 token
             });
@@ -33,7 +33,7 @@ exports.signIn = async function(req, res, next){
                 message: 'Invalid email/password combination.'
             });
         }
-    } catch (error){
+    } catch (error) {
         return next({
             status: 400,
             message: 'Invalid email/password combination.'
